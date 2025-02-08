@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text-Input Suggest</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body style="background-image: linear-gradient(to right, red , yellow);">
+    <div class="container mt-5">
+        <h1>Keyboard-AutoSuggestion & Correction</h1>
+        <form method="POST" action="/suggest" class="mt-4">
+            <div class="form-group">
+                <label for="keyword">Enter a word:</label>
+                <input type="text" class="form-control" id="keyword" name="keyword" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-animated">Submit</button>
+
+        </form>
+
+        <div id="suggestions" class="mt-4">
+        {% if suggestions %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Suggested Word</th>
+                    <th>Similarity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for suggestion in suggestions %}
+                <tr>
+                    <td>{{ suggestion['Word'] }}</td>
+                    <td>{{ suggestion['Similarity'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+        </div>
+
+
+    </div>
+</body>
+</html>
